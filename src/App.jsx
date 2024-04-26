@@ -33,8 +33,11 @@ function App() {
       }
       return [selectedPlace, ...prevPickedPlaces];
     });
-
-    await updateUserPlaces(userPlaces)
+    try {
+    await updateUserPlaces([...userPlaces, selectedPlace])
+    } catch (err) {
+      // next development - err handler BE and FE
+    }
   }
 
   const handleRemovePlace = useCallback(async function handleRemovePlace() {
